@@ -1,0 +1,13 @@
+dotenv: .env
+
+networks:
+  default: development
+  development:
+    cmd_settings:
+      mnemonic: bla
+      default_balance: 100
+      # unlock: <ACCOUNT ADDRESS HERE> # optionally add saved brownie account to Ganache
+      # # (requires explicit transfer of eth to accounts[-1]) 
+
+    update_interval: 60
+    verify: False
