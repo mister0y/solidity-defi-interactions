@@ -9,6 +9,7 @@ contract CompoundInteraction {
     // https://stackoverflow.com/questions/64733976/i-am-having-a-difficulty-of-understanding-interfaces-in-solidity-what-am-i-miss
     IERC20 dai;
     CTokenInterface cDai;
+    address daiTokenAddress;
     IERC20 bat;
     CTokenInterface cBat;
     ComptrollerInterface comptroller;
@@ -21,13 +22,14 @@ contract CompoundInteraction {
         address _comptroller) public {
             dai = IERC20(_dai); //_dai is the dai erc20 token contract address
             cDai = CTokenInterface(_cDai);
+            daiTokenAddress = _cDai;
             bat = IERC20(_bat);
             cBat = CTokenInterface(_cBat);
             comptroller = ComptrollerInterface(_comptroller);
     }
         
     function invest() external {
-        dai.approve(address(cDai), 10000));
+        dai.approve(address(cDai), 10000);
         cDai.mint(10000);
     }
     
@@ -37,18 +39,18 @@ contract CompoundInteraction {
     }
     
     function borrow() external {
-        dai.approve(address(cDai), 10000));
+        dai.approve(address(cDai), 10000);
         cDai.mint(10000);   
         
-        address[] markets = new address[1];
-        markets[0] = cDai;
+        address[] memory markets;
+        markets[0] = daiTokenAddress;
         comptroller.enterMarkets(markets);
         
         cBat.borrow(100);
     }
     
     function payback() external {
-        bat.approve(address(cBat), 150) //extra for interest
+        bat.approve(address(cBat), 150); //extra for interest
         cBat.repayBorrow(100);
         
         //optional
