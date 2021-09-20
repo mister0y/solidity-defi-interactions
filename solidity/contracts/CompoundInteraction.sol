@@ -7,6 +7,13 @@ import "./CTokenInterface.sol";
 contract CompoundInteraction {
     //for more info on how to use these interfaces in this context:
     // https://stackoverflow.com/questions/64733976/i-am-having-a-difficulty-of-understanding-interfaces-in-solidity-what-am-i-miss
+
+    //interacting with compound
+    // https://medium.com/compound-finance/supplying-assets-to-the-compound-protocol-ec2cf5df5aa#afff
+
+    // transfer dai to this contract
+    // https://ethereum.stackexchange.com/questions/74584/how-to-transfer-erc20-tokens-from-an-account-to-a-contract 
+    
     IERC20 dai;
     CTokenInterface cDai;
     address daiTokenAddress;
