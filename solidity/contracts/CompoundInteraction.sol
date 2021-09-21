@@ -10,15 +10,16 @@ contract CompoundInteraction {
 
     //interacting with compound
     // https://medium.com/compound-finance/supplying-assets-to-the-compound-protocol-ec2cf5df5aa#afff
+    // https://medium.com/compound-finance/borrowing-assets-from-compound-quick-start-guide-f5e69af4b8f4
 
     // transfer dai to this contract
-    // https://ethereum.stackexchange.com/questions/74584/how-to-transfer-erc20-tokens-from-an-account-to-a-contract 
+    // dai.functions.transfer(<contract_address>, <amount>).transact({'from': str(accounts[0])})
     
     IERC20 dai;
-    CTokenInterface cDai;
+    CErc20 cDai;
     address daiTokenAddress;
     IERC20 bat;
-    CTokenInterface cBat;
+    CErc20 cBat;
     ComptrollerInterface comptroller;
     
     constructor (
@@ -28,16 +29,17 @@ contract CompoundInteraction {
         address _cBat,
         address _comptroller) public {
             dai = IERC20(_dai); //_dai is the dai erc20 token contract address
-            cDai = CTokenInterface(_cDai);
+            cDai = CErc20(_cDai);
             daiTokenAddress = _cDai;
             bat = IERC20(_bat);
-            cBat = CTokenInterface(_cBat);
+            cBat = CErc20(_cBat);
             comptroller = ComptrollerInterface(_comptroller);
     }
         
-    function invest() external {
+    function invest() external returns(uint) {
         dai.approve(address(cDai), 10000);
-        cDai.mint(10000);
+        uint mintResult =  cDai.mint(10000);
+        return mintResult;
     }
     
     function cashOut() external {
