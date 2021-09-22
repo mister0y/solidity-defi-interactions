@@ -1,4 +1,4 @@
-from brownie import accounts
+from brownie import accounts, Wei
 
 
 def test_investing_dai(dai, cdai, deployment, dai_tokens):
@@ -9,6 +9,6 @@ def test_investing_dai(dai, cdai, deployment, dai_tokens):
     dai.functions.transfer(str(CI.address), 10000).transact({'from': str(accounts[0])})
 
     # invest
-    mint_result = CI.invest()
+    CI.invest({'from': accounts[0]})
 
-    assert False
+    assert cdai.functions.balanceOf(str(accounts[0])).call() > 0 

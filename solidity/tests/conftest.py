@@ -18,7 +18,7 @@ def deployment():
 
 @pytest.fixture(scope="module")
 def dai_tokens():
-    run('send-tokens-from-unlocked-account')
+    run('send_tokens_from_unlocked_account')
 
 @pytest.fixture(scope="module")
 def dai():

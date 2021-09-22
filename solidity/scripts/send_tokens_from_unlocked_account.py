@@ -4,7 +4,8 @@ from web3 import Web3, HTTPProvider
 # first run ganache-cli with a public dai address with a large balance to unlock
 # ganache-cli -f https://mainnet.infura.io/v3/b8b129de56014e2dbeeb06546f9b0ce1 -u 0x21a31Ee1afC51d94C2eFcCAa2092aD1028285549
 
-def main():
+
+def transfer_dai_to_own_account():
     w3 = Web3(HTTPProvider('http://127.0.0.1:8545'))
 
     contract_address_dai = '0x6B175474E89094C44Da98b954EedeAC495271d0F' # DAI contract address
@@ -21,5 +22,8 @@ def main():
 
     print(f"balance big user after is: {contract_instance_dai.functions.balanceOf(unlocked_account).call()}")
     print(f"balance accounts[0]: {contract_instance_dai.functions.balanceOf(my_account).call()}")
+
+def main():
+    transfer_dai_to_own_account()
 
 
