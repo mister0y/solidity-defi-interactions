@@ -1,6 +1,5 @@
-from brownie import Contract, accounts
-from brownie import MintableForkToken
-import deploy
+from brownie import Contract, accounts, run
+from brownie_tokens import MintableForkToken
 
 def main():
     _dai = "0x6B175474E89094C44Da98b954EedeAC495271d0F"
@@ -14,7 +13,7 @@ def main():
     cdai = MintableForkToken(_cDai)
     dai.mint_for_testing(accounts[0], amount)
 
-    CI = deploy()
+    run('deploy')
 
     print(f"dai balance accounts 0: {dai.balanceOf(accounts[0])}")
 
