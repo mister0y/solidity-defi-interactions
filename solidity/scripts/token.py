@@ -23,7 +23,7 @@ def main():
     print(f"dai balance accounts 0: {dai.balanceOf(accounts[0])}")
     print(f"dai balance contract: {dai.balanceOf(CI.address)}")
 
-    print("ptting dai in Compound")
+    print("putting dai in Compound")
     CI.invest()
 
     print(f"dai balance contract: {dai.balanceOf(CI.address)}")

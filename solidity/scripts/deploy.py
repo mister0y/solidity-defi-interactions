@@ -7,12 +7,23 @@ def main():
     _cBat = "0x6c8c6b02e7b2be14d4fa6022dfd6d75921d90e4e"
     _comptroller = "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B"
     # requires brownie account to have been created
-    CI = CompoundInteraction.deploy(
-        _dai,
-        _cDai,
-        _bat,
-        _cBat,
-        _comptroller, 
-        {'from': accounts[0]}
-    )
+    if network.show_active() == 'development' or network.show_active() == 'mainnet-fork':
+        CI = CompoundInteraction.deploy(
+            _dai,
+            _cDai,
+            _bat,
+            _cBat,
+            _comptroller, 
+            {'from': accounts[0]}
+        )
+    else: # ropsten
+        acct = accounts.load('deploy')
+        CI = CompoundInteraction.deploy(
+            _dai,
+            _cDai,
+            _bat,
+            _cBat,
+            _comptroller, 
+            {'from': acct}
+        )
     return CI
