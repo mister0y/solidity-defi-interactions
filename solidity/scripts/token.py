@@ -11,9 +11,9 @@ def main():
     amount = 10000
     dai = MintableForkToken(_dai)
     cdai = MintableForkToken(_cDai)
-    dai.mint_for_testing(accounts[0], amount)
+    dai._mint_for_testing(accounts[0], amount)
 
-    run('deploy')
+    CI = run('deploy')
 
     print(f"dai balance accounts 0: {dai.balanceOf(accounts[0])}")
 

@@ -24,4 +24,3 @@ compiler:
       - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@2.5.0"
 dependencies:
   - OpenZeppelin/openzeppelin-contracts@2.5.0
-  
