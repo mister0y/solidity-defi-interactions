@@ -1,13 +1,26 @@
 dotenv: .env
 
 networks:
-  default: development
+  default: mainnet-fork
   development:
     cmd_settings:
-      mnemonic: bla
-      default_balance: 100
-      # unlock: <ACCOUNT ADDRESS HERE> # optionally add saved brownie account to Ganache
-      # # (requires explicit transfer of eth to accounts[-1]) 
+      port: 8545
+      mnemonic: "${BROWNIE_DEV_MNEMONIC}"
+      fork: "https://mainnet.infura.io/v3/${WEB3_INFURA_PROJECT_ID}"
+      default_balance: 1000
+      unlock: "0x21a31Ee1afC51d94C2eFcCAa2092aD1028285549" # can also be a list
+  mainnet-fork:
+    cmd_settings:
+      port: 8545
+      mnemonic: "${BROWNIE_DEV_MNEMONIC}"
 
-    update_interval: 60
-    verify: False
+  # ropsten:
+  #   chain_id: 3
+
+compiler:
+  solc:
+    version: 0.5.16
+    remappings:
+      - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@2.5.0"
+dependencies:
+  - OpenZeppelin/openzeppelin-contracts@2.5.0
