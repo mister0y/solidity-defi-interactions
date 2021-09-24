@@ -1,5 +1,10 @@
 from brownie import Contract, accounts, run
 from brownie_tokens import MintableForkToken
+# from brownie.network.gas.strategies import GasNowStrategy
+# from brownie.network import gas_price
+
+# gas_strategy = GasNowStrategy('slow')
+# gas_price(gas_strategy)
 
 def main():
     _dai = "0x6B175474E89094C44Da98b954EedeAC495271d0F"

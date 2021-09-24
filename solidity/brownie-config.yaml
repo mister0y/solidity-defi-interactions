@@ -6,16 +6,13 @@ networks:
     cmd_settings:
       port: 8545
       mnemonic: "${BROWNIE_DEV_MNEMONIC}"
-      fork: "https://mainnet.infura.io/v3/${WEB3_INFURA_PROJECT_ID}"
+      # fork: "https://mainnet.infura.io/v3/${WEB3_INFURA_PROJECT_ID}"
       default_balance: 1000
-      unlock: "0x21a31Ee1afC51d94C2eFcCAa2092aD1028285549" # can also be a list
+      # unlock: "0x21a31Ee1afC51d94C2eFcCAa2092aD1028285549" # can also be a list
   mainnet-fork:
     cmd_settings:
       port: 8545
       mnemonic: "${BROWNIE_DEV_MNEMONIC}"
-
-  # ropsten:
-  #   chain_id: 3
 
 compiler:
   solc:
